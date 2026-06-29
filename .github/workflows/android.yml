@@ -23,9 +23,15 @@ jobs:
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v4
       with:
-        gradle-version: '7.5' # 👈 Gradle ဗားရှင်းအဟောင်းကို အတင်းပြောင်းသုံးခိုင်းလိုက်တာပါ
+        gradle-version: '7.5'
 
     - name: Build with Gradle
       run: |
         cd app
         gradle assembleDebug
+
+    - name: Upload APK Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: XmlDesignerAIDE-Debug-APK
+        path: app/build/outputs/apk/debug/*.apk
